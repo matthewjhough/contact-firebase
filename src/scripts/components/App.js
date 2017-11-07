@@ -1,6 +1,9 @@
 var React = require('react');
 var AppActions = require('../actions/AppActions');
 var AppStore = require('../stores/AppStore');
+var AddForm = require('./AddForm.js');
+
+/* es6 component */
 
 class App extends React.Component {
 
@@ -12,24 +15,25 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // todo
+        AppStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
-        // todo
+        AppStore.removeChangeListener(this._onChange);
     }
 
     render() {
+        console.log(this.state.contacts);
         return (
             <div>
-                My App. 
+                <AddForm />
             </div>
         );
     }
 
     _onChange() {
         this.setState({
-            // set data of app component
+            contacts: AppStore.getContacts()
         });
     }
     

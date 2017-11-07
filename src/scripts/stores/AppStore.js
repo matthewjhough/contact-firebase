@@ -6,9 +6,17 @@ var AppApi = require('../utils/appApi');
 
 var CHANGE_EVENT = 'change';
 
-var items = [];
+var _contacts = [];
 
 var AppStore = assign({}, EventEmitter.prototype, {
+
+    getContacts() {
+        return _contacts;
+    },
+
+    saveContact(contact) {
+        _contacts.push(contact);
+    },
 
     emitChange() {
         this.emit(CHANGE_EVENT);
@@ -27,7 +35,15 @@ AppDispatcher.register((payload) => {
     var action = payload.action;
 
     switch(action.actionType) {
+        case AppConstants.SAVE_CONTACT:
+            console.log('Saving Contact...');
 
+            // store save
+            AppStore.saveContact(action.contact);
+
+            // emit change
+            AppStore.emit(CHANGE_EVENT);
+            break;
     }
 
 

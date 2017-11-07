@@ -1,3 +1,3 @@
 module.exports = {
- // todo add
+    SAVE_CONTACT: 'SAVE_CONTACT'
 }
