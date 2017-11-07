@@ -5,7 +5,6 @@ var babel = require('gulp-babel');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 
-
 gulp.task('browserify', function() {
     browserify('./src/scripts/main.js')
         .transform('reactify')
@@ -28,4 +27,3 @@ gulp.task('copy', function() {
 gulp.task('default', ['browserify', 'copy'], function() {
     return gulp.watch('src/**/*.*', ['browserify', 'copy'] )
 });
-
